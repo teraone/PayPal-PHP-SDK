@@ -45,6 +45,8 @@ class FormatConverter
      */
     public static function formatToPrice($value, $currency = null)
     {
+        $LocaleInfo = localeconv();
+        $value = str_replace($LocaleInfo["mon_decimal_point"] , ".", $value);
         $decimals = 2;
         $currencyDecimals = array('JPY' => 0, 'TWD' => 0);
         if ($currency && array_key_exists($currency, $currencyDecimals)) {
